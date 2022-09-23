@@ -3,4 +3,7 @@
     <string name="button">Button</string>
     <string name="clique_para_rodar_a_garrafa">Clique para rodar a garrafa</string>
     <string name="todo">TODO</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="rodando_a_roleta">Rodando a Roleta!</string>
+    <string name="fundo">TODO</string>
 </resources>

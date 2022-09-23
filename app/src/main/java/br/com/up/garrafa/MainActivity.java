@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -19,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
         btn_button.setOnClickListener(view -> {
 
-            Intent telenovela = new Intent( getApplicationContext(), paginating.class);
-            startActivity(telenovela);
+            Intent novatela = new Intent(MainActivity.this, MainActivity2.class);
+            startActivity(novatela);
+
         });
 
     }

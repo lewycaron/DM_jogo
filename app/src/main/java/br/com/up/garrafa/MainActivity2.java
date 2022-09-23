@@ -1,44 +1,46 @@
 package br.com.up.garrafa;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Random;
 
-public class paginating extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
-    private ImageView garrafa;
+
+    private ImageView roleta;
     private Random random = new Random();
     private int ultimadirecao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_tela2);
-        garrafa = findViewById(R.id.fundogarrafa);
-        garrafa.setOnClickListener(view -> {
+        setContentView(R.layout.activity_main2);
 
-            int i = 1800;
 
+        roleta = findViewById(R.id.idRoleta);
+        roleta.setOnClickListener(view -> {
+
+
+
+            int i = 2880;
             int direction = random.nextInt(i);
-            float eixoX = garrafa.getWidth() /2;
-            float eixoY = garrafa.getWidth() /2;
+            float eixoX = roleta.getWidth() /2;
+            float eixoY = roleta.getHeight() /2;
+
             Animation virar = new RotateAnimation(ultimadirecao, direction, eixoX, eixoY);
             virar.setDuration(2500);
             virar.setFillAfter(true);
 
             ultimadirecao = direction;
-            garrafa.startAnimation(virar);
+            roleta.startAnimation(virar);
 
 
         });
 
-
     }
-
 }
