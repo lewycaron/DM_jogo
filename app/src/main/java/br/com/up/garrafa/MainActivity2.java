@@ -48,4 +48,18 @@ public class MainActivity2 extends AppCompatActivity {
         double angulo = valor_decimal * 360;
         roleta.startAnimation(virar);
     }
+
+//    angulo > 0 && angulo < 34 =  "Zero"
+//    angulo > 35 && angulo < 60 =  "2$"
+//    angulo > 61 && angulo < 94 =  "50$"
+//    angulo > 95 && angulo < 120 =  "1$"
+//    angulo > 121 && angulo < 154 =  "5$"
+//    angulo > 155 && angulo < 180 =  "20$"
+//    angulo > 181 && angulo < 213 =  "JACKPOT"
+//    angulo > 214 && angulo < 239 =  "15$"
+//    angulo > 240 && angulo < 272 =  "100$"
+//    angulo > 273 && angulo < 299 =  "1$"
+//    angulo > 300 && angulo < 333 =  "5$"
+//    angulo > 334 && angulo < 359 =  "10$"
+
 }
