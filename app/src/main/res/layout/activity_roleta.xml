@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundo"
+    android:background="@drawable/fundo3"
     tools:context=".RoletaActivity">
-
-    <ImageView
-        android:id="@+id/idRoleta"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-
-        android:layout_centerInParent="true"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/roleta" />
 
     <ImageView
         android:id="@+id/ponteiro"
@@ -28,15 +19,33 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="185dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="-35dp"
+        android:layout_marginTop="64dp"
         android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycleViewRoleta"
         app:srcCompat="@drawable/ponteiro" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/recycleViewRoleta"
+        android:layout_width="415dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/idRoleta"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/roleta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ponteiro" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
