@@ -1,31 +1,37 @@
 package br.com.up.garrafa;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class RoletaActivity extends AppCompatActivity {
+import br.com.up.garrafa.Adapter.RoletaAdapter;
+import br.com.up.garrafa.Model.RoletaModel;
 
-
+public class RoletaActivity extends AppCompatActivity{
     private ImageView roleta;
     private Random random = new Random();
+    private RecyclerView recycleView;
+    private List<RoletaModel> listaRoleta = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roleta);
 
-
         roleta = findViewById(R.id.idRoleta);
         roleta.setOnClickListener(view -> {
             startRoleta();
         });
-
     }
 
     public void startRoleta() {
@@ -42,33 +48,52 @@ public class RoletaActivity extends AppCompatActivity {
         rodarRoletaAnimation.setDuration(2500);
         rodarRoletaAnimation.setFillAfter(true);
 
-        calculaAnguloRoleta(direcao, anguloRoleta);
-
         roleta.startAnimation(rodarRoletaAnimation);
+        calculaAnguloRoleta(direcao, anguloRoleta);
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            createRecycleView();
+        }, 2500);
+
     }
 
-    public void traduzValores(double anguloRoleta) {
+    public void createRecycleView(){
+        recycleView = findViewById(R.id.recycleViewRoleta);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recycleView.setLayoutManager(layoutManager);
+        recycleView.setHasFixedSize(true);
+        RoletaAdapter adapter = new RoletaAdapter(listaRoleta);
+        recycleView.setAdapter(adapter);
+    }
+
+    public void traduzValores(double anguloRoleta){
+
         String valorRoleta = "";
-        if(anguloRoleta >= 0 && anguloRoleta < 27){valorRoleta = "10";}
-        if(anguloRoleta >= 27 && anguloRoleta < 61){valorRoleta = "5";}
-        if(anguloRoleta >= 61 && anguloRoleta < 88){valorRoleta = "1";}
-        if(anguloRoleta >= 88 && anguloRoleta < 121){valorRoleta = "100";}
-        if(anguloRoleta >= 121 && anguloRoleta < 147){valorRoleta = "15";}
+        if(anguloRoleta >= 0 && anguloRoleta < 27){valorRoleta = "R$10";}
+        if(anguloRoleta >= 27 && anguloRoleta < 61){valorRoleta = "R$5";}
+        if(anguloRoleta >= 61 && anguloRoleta < 88){valorRoleta = "R$1";}
+        if(anguloRoleta >= 88 && anguloRoleta < 121){valorRoleta = "R$100";}
+        if(anguloRoleta >= 121 && anguloRoleta < 147){valorRoleta = "R$15";}
         if(anguloRoleta >= 147 && anguloRoleta < 180){valorRoleta = "JACKPOT";}
-        if(anguloRoleta >= 180 && anguloRoleta < 207){valorRoleta = "20";}
-        if(anguloRoleta >= 207 && anguloRoleta < 239){valorRoleta = "5";}
-        if(anguloRoleta >= 239 && anguloRoleta < 266){valorRoleta = "1";}
-        if(anguloRoleta >= 266 && anguloRoleta < 299){valorRoleta = "50";}
-        if(anguloRoleta >= 299 && anguloRoleta < 326){valorRoleta = "2";}
+        if(anguloRoleta >= 180 && anguloRoleta < 207){valorRoleta = "R$20";}
+        if(anguloRoleta >= 207 && anguloRoleta < 239){valorRoleta = "R$5";}
+        if(anguloRoleta >= 239 && anguloRoleta < 266){valorRoleta = "R$1";}
+        if(anguloRoleta >= 266 && anguloRoleta < 299){valorRoleta = "R$50";}
+        if(anguloRoleta >= 299 && anguloRoleta < 326){valorRoleta = "R$2";}
         if(anguloRoleta >= 326 && anguloRoleta < 360){valorRoleta = "Zero";}
+        criarPremiacao(valorRoleta);
     }
 
     public void calculaAnguloRoleta(double direcao, int anguloRoleta){
         double numeroVoltasRoleta =  direcao / anguloRoleta;
         double sobraVoltas = numeroVoltasRoleta - (int)(numeroVoltasRoleta);
         double anguloReal = sobraVoltas * anguloRoleta;
-
         traduzValores(anguloReal);
+    }
+
+    public void criarPremiacao(String premiacao){
+        RoletaModel roleta = new RoletaModel(premiacao);
+        listaRoleta.add(roleta);
     }
 
 //    angulo > 326 && angulo < 360 =  "Zero"
