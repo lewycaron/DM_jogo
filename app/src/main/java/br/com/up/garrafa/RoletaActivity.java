@@ -59,11 +59,12 @@ public class RoletaActivity extends AppCompatActivity{
 
     public void createRecycleView(){
         recycleView = findViewById(R.id.recycleViewRoleta);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recycleView.setLayoutManager(layoutManager);
         recycleView.setHasFixedSize(true);
         RoletaAdapter adapter = new RoletaAdapter(listaRoleta);
         recycleView.setAdapter(adapter);
+        recycleView.smoothScrollToPosition(0);
     }
 
     public void traduzValores(double anguloRoleta){
@@ -93,7 +94,7 @@ public class RoletaActivity extends AppCompatActivity{
 
     public void criarPremiacao(String premiacao){
         RoletaModel roleta = new RoletaModel(premiacao);
-        listaRoleta.add(roleta);
+        listaRoleta.add(0, roleta);
     }
 
 //    angulo > 326 && angulo < 360 =  "Zero"
